@@ -1,20 +1,5 @@
-
-// import fetch from "node-fetch";
-// import ObjectsToCsv from "objects-to-csv";
-const ObjectsToCsv = require("../node_modules/objects-to-csv")
-const fetch = require('axios')
 const { default: axios } = require("axios")
-// try {
-//     const fetchhh = require("../node_modules/node-fetch")
 
-// } catch (error) {
-//     console.log(error)
-// }
-
-
-
-
-let settings = { method: "Get" };
 let params = {
     page: 1,
     limit: 250,
@@ -72,7 +57,6 @@ const getResults = async () => {
     var productTypeData = []
     let urlArray = ["https://fanjoy.co/products.json?" + query, "https://gymshark.com/products.json?" + query, "https://ca.ultamodan.com/products.json?" + query];
 
-    // capture stores using Shopify
     for (let i = 0; i < urlArray.length; i++) {
 
         const JSONproductList = await axios({ method: 'get', url: urlArray[i] })
@@ -147,11 +131,7 @@ function renderChart(data) {
 
 async function getChartData() {
 
-    var [flattedDateData, flattedTypeData] = await getResults();
-
-//    const Date=productDateData[0].concat(productDateData[1]);
-//    const Type=productTypeData
-
+    var [flattedDateData, flattedTypeData] = await getResults()
 
     renderChart(flattedDateData);
     renderTypeChart(flattedTypeData);
